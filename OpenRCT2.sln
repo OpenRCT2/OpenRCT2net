@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{33922239-A963-4779-B1BD-D5825ABB35CC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{886B7125-DAD8-4930-AEC1-4C4B5ADD1DC0}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRCT2.Network", "src\OpenRCT2.Network\OpenRCT2.Network.xproj", "{11486F83-2D37-4834-AA24-E4F4F4FCF3BA}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenRCT2.Core", "src\OpenRCT2.Core\OpenRCT2.Core.xproj", "{31560BFA-F86F-40D4-BA01-F5FF82962AAD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11486F83-2D37-4834-AA24-E4F4F4FCF3BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11486F83-2D37-4834-AA24-E4F4F4FCF3BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11486F83-2D37-4834-AA24-E4F4F4FCF3BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11486F83-2D37-4834-AA24-E4F4F4FCF3BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31560BFA-F86F-40D4-BA01-F5FF82962AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31560BFA-F86F-40D4-BA01-F5FF82962AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31560BFA-F86F-40D4-BA01-F5FF82962AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31560BFA-F86F-40D4-BA01-F5FF82962AAD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{11486F83-2D37-4834-AA24-E4F4F4FCF3BA} = {33922239-A963-4779-B1BD-D5825ABB35CC}
+		{31560BFA-F86F-40D4-BA01-F5FF82962AAD} = {33922239-A963-4779-B1BD-D5825ABB35CC}
+	EndGlobalSection
+EndGlobal

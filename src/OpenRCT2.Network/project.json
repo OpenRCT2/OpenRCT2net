@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0-*",
+  "description": "OpenRCT2 .NET Network Library",
+  "tags": [ "OpenRCT2", "network" ],
+  "projectUrl": "https://github.com/OpenRCT2/OpenRCT2net",
+
+  "dependencies": {
+    "OpenRCT2.Core": "",
+    "System.Collections.Immutable": "1.1.38-*"
+  },
+  "frameworks": {
+    "net451": {
+      "frameworkAssemblies": {
+        "System.Runtime": "4.0.0.0"
+      }
+    },
+    "dotnet5.4": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-*",
+        "System.Collections": "4.0.11-*",
+        "System.Linq": "4.0.1-*",
+        "System.Net.Sockets": "4.1.0-*",
+        "System.Runtime": "4.0.21-*",
+        "System.Threading": "4.0.11-*"
+      }
+    }
+  }
+}

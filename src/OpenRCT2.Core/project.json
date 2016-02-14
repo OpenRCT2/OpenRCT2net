@@ -1,0 +1,19 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "OpenRCT2 .NET Core Library",
+  "tags": [ "OpenRCT2", "core" ],
+  "projectUrl": "https://github.com/OpenRCT2/OpenRCT2net",
+
+  "frameworks": {
+    "net451": { },
+    "dotnet5.4": {
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-*",
+        "System.Collections": "4.0.11-*",
+        "System.Linq": "4.0.1-*",
+        "System.Runtime": "4.0.21-*",
+        "System.Threading": "4.0.11-*"
+      }
+    }
+  }
+}
