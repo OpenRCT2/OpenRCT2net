@@ -25,9 +25,12 @@ namespace OpenRCT2.Network
         private bool _authenticated;
         private AuthenticationResult _authenticationResult;
         private TaskSignal _authenticationReceivedSignal;
+        private TaskSignal _serverInfoReceivedSignal;
 
         private DateTime _lastPingReceived;
         private Task _networkLoopTask;
+
+        private string _serverInfoJson;
 
         public bool Connected { get; private set; }
         public bool ConnectionFailed { get; private set; }
@@ -71,6 +74,30 @@ namespace OpenRCT2.Network
             _networkLoopTask = Task.Run(() => Run());
         }
 
+        public async Task<string> RequestServerInfo()
+        {
+            if (!Connected)
+            {
+                throw new InvalidOperationException("Not yet connected to a server.");
+            }
+            if (_serverInfoReceivedSignal != null)
+            {
+                throw new InvalidOperationException("Already requesting server info.");
+            }
+
+            _serverInfoReceivedSignal = new TaskSignal();
+            try
+            {
+                SendServerInfoRequest();
+                await _serverInfoReceivedSignal.Wait(PacketWaitTimeout);
+                return _serverInfoJson;
+            }
+            finally
+            {
+                _serverInfoReceivedSignal = null;
+            }
+        }
+
         public async Task<AuthenticationResult> Authenticate(string userName, string password = null)
         {
             if (!Connected)
@@ -105,17 +132,17 @@ namespace OpenRCT2.Network
             var br = new BinaryReader(stream);
             while (IsStillConnected())
             {
-                if (stream.DataAvailable)
+                try
                 {
-                    ushort packetLength = br.ReadUInt16()
-                                            .ToLittleEndian();
-                    byte[] payload = br.ReadBytes(packetLength);
-                    try
+                    if (stream.DataAvailable)
                     {
+                        ushort packetLength = br.ReadUInt16()
+                                                .ToLittleEndian();
+                        byte[] payload = br.ReadBytes(packetLength);
                         OnNextPacket(payload);
                     }
-                    catch (Exception) { }
                 }
+                catch { }
             }
 
             Connected = false;
@@ -146,6 +173,9 @@ namespace OpenRCT2.Network
                 case PacketType.SetDisconnectMessage:
                     HandleDisconnect(br);
                     break;
+                case PacketType.ServerInfo:
+                    HandleServerInfo(br);
+                    break;
                 }
             }
         }
@@ -168,6 +198,17 @@ namespace OpenRCT2.Network
             {
                 var bw = new BinaryWriter(ms);
                 bw.Write(PacketType.Ping);
+
+                SendPacket(ms.ToArray());
+            }
+        }
+
+        private void SendServerInfoRequest()
+        {
+            using (var ms = new MemoryStream(capacity: 4))
+            {
+                var bw = new BinaryWriter(ms);
+                bw.Write(PacketType.ServerInfo);
 
                 SendPacket(ms.ToArray());
             }
@@ -197,6 +238,12 @@ namespace OpenRCT2.Network
 
                 SendPacket(ms.ToArray());
             }
+        }
+
+        private void HandleServerInfo(BinaryReader br)
+        {
+            _serverInfoJson = br.ReadUTF8();
+            _serverInfoReceivedSignal?.Set();
         }
 
         private void HandleAuth(BinaryReader br)

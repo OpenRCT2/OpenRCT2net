@@ -11,7 +11,7 @@
         Ping,
         PingList,
         SetDisconnectMessage,
-        GameInfo,
+        ServerInfo,
         ShowError,
         GroupList,
     }
