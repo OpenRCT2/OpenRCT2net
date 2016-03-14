@@ -1,0 +1,28 @@
+version: 1.0.{build}
+image: Visual Studio 2015
+install:
+- cmd: >-
+    curl -s https://dotnetcli.blob.core.windows.net/dotnet/dev/Installers/Latest/dotnet-win-x64.latest.msi -o dotnet-win-x64.latest.msi > nul
+
+    msiexec /i dotnet-win-x64.latest.msi /quiet /qn /norestart /log install.log
+build_script:
+- ps: >-
+    $env:PATH = $env:PATH + ";C:\Program Files\dotnet\bin"
+
+    $env:DOTNET_HOME = "C:\Program Files\dotnet\"
+
+    dotnet restore -v Warning
+
+    dotnet pack .\src\OpenRCT2.Core -o .\artifacts\OpenRCT2.Core -c Release
+
+    dotnet pack .\src\OpenRCT2.Network -o .\artifacts\OpenRCT2.Network -c Release
+artifacts:
+- path: 'artifacts\**\*.nupkg'
+deploy:
+  provider: NuGet
+  api_key:
+    secure: zT6G5fDE3fFgMOis/rnef8IdMj16aR57tn7wxh3XenV0rEOI4YqJdNQV9lKV+s07
+  artifact: /.*\.nupkg/
+  on:
+    branch: master
+    appveyor_repo_tag: true

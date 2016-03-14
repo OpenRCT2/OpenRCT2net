@@ -1,8 +1,14 @@
 {
-  "version": "1.0.0-*",
-  "description": "OpenRCT2 .NET Network Library",
-  "tags": [ "OpenRCT2", "network" ],
+  "title": "OpenRCT2 .NET Network Library",
+  "description": "The network library for OpenRCT2 containing classes to interact with OpenRCT2 servers.",
+  "authors": [ "OpenRCT2 Team" ],
+  "copyright": "Copyright © OpenRCT2 Team 2016",
   "projectUrl": "https://github.com/OpenRCT2/OpenRCT2net",
+  "iconUrl": "https://raw.githubusercontent.com/OpenRCT2/OpenRCT2/master/resources/logo/icon_x64.png",
+  "language": "en-GB",
+  "tags": [ "OpenRCT2", "network" ],
+
+  "version": "1.0.1-*",
 
   "dependencies": {
     "OpenRCT2.Core": "",
@@ -14,7 +20,7 @@
         "System.Runtime": "4.0.0.0"
       }
     },
-    "dotnet5.4": {
+    "dotnet5.5": {
       "dependencies": {
         "Microsoft.CSharp": "4.0.1-*",
         "System.Collections": "4.0.11-*",
