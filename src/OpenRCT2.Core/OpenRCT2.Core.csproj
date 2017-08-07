@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\common.props" />
+  <PropertyGroup>
+    <Title>OpenRCT2 .NET Core Library</Title>
+    <Description>The core .NET library for OpenRCT2 containing abstractions, constants, helpers and utilities.</Description>
+    <PackageTags>OpenRCT2;core</PackageTags>
+    <Version>1.1.0</Version>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.0;net40</TargetFrameworks>
+  </PropertyGroup>
+</Project>

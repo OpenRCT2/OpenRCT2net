@@ -1,21 +1,12 @@
 version: 1.0.{build}
-image: Visual Studio 2015
-install:
-- cmd: >-
-    curl -s https://dotnetcli.blob.core.windows.net/dotnet/dev/Installers/Latest/dotnet-win-x64.latest.msi -o dotnet-win-x64.latest.msi > nul
-
-    msiexec /i dotnet-win-x64.latest.msi /quiet /qn /norestart /log install.log
+image: Visual Studio 2017
 build_script:
 - ps: >-
-    $env:PATH = $env:PATH + ";C:\Program Files\dotnet\bin"
+    dotnet restore -v m
 
-    $env:DOTNET_HOME = "C:\Program Files\dotnet\"
+    dotnet pack .\src\OpenRCT2.Core -o ..\..\artifacts\OpenRCT2.Core -c Release
 
-    dotnet restore -v Warning
-
-    dotnet pack .\src\OpenRCT2.Core -o .\artifacts\OpenRCT2.Core -c Release
-
-    dotnet pack .\src\OpenRCT2.Network -o .\artifacts\OpenRCT2.Network -c Release
+    dotnet pack .\src\OpenRCT2.Network -o ..\..\artifacts\OpenRCT2.Network -c Release
 artifacts:
 - path: 'artifacts\**\*.nupkg'
 deploy:
