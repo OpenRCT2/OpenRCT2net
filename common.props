@@ -11,6 +11,8 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <!-- Ignore missing XML documentation -->
     <NoWarn>$(NoWarn);1573;1591</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(SNK)'=='true'">
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\openrct2.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
