@@ -2,10 +2,14 @@
   <PropertyGroup>
     <Authors>OpenRCT2 Team</Authors>
     <Copyright>Copyright © OpenRCT2 Team 2016-2017</Copyright>
-    <PackageProjectUrl>https://github.com/OpenRCT2/OpenRCT2net</PackageProjectUrl>
+    <PackageProjectUrl>https://openrct2.website</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/OpenRCT2/OpenRCT2net</RepositoryUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/OpenRCT2/OpenRCT2/master/resources/logo/icon_x64.png</PackageIconUrl>
   </PropertyGroup>
   <PropertyGroup>
     <OutputPath>..\..\bin\$(Configuration)\</OutputPath>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- Ignore missing XML documentation -->
+    <NoWarn>$(NoWarn);1573;1591</NoWarn>
   </PropertyGroup>
 </Project>
