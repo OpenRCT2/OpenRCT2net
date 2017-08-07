@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\common.props" />
+  <PropertyGroup>
+    <Title>OpenRCT2 .NET Network Library</Title>
+    <Description>The network library for OpenRCT2 containing classes to interact with OpenRCT2 servers.</Description>
+    <PackageTags>OpenRCT2;network</PackageTags>
+    <Version>1.1.0</Version>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>netstandard1.3;net46</TargetFrameworks>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpenRCT2.Core\OpenRCT2.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Collections.Immutable" Version="1.3.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)'=='netstandard1.3'">
+    <PackageReference Include="System.Net.Sockets" Version="4.3.0" />
+  </ItemGroup>
+</Project>
